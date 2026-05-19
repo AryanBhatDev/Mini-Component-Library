@@ -19,15 +19,6 @@ const Select = ({ label, value, onChange, children }) => {
   );
 };
 
-const PresentationalBit = styled.div`
-  width: 100%;
-  padding: 12px 48px 12px 16px;
-  font-size: 1rem;
-  border-radius: 8px;
-  color: ${COLORS.gray700};
-  background-color: ${COLORS.transparentGray15};
-`;
-
 const SelectWrapper = styled.select`
   position: absolute;
   top: 0;
@@ -37,10 +28,24 @@ const SelectWrapper = styled.select`
   height: 100%;
 `;
 
+const PresentationalBit = styled.div`
+  width: 100%;
+  padding: 12px 52px 12px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  color: ${COLORS.gray700};
+  background-color: ${COLORS.transparentGray15};
+
+  ${SelectWrapper}:focus + & {
+    outline: 2px solid -webkit-focus-ring-color;
+  }
+`;
+
 const IconWrapper = styled.div`
   position: absolute;
-  right: 4px;
+  right: 10px;
   color: ${COLORS.gray700};
+  pointer-events: none;
 `;
 
 const Wrapper = styled.div`
