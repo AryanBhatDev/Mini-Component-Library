@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { COLORS } from "../../constants";
 import Icon from "../Icon/Icon";
 import { getDisplayedValue } from "./Select.helpers";
@@ -9,47 +8,51 @@ const Select = ({ label, value, onChange, children }) => {
 
   return (
     <Wrapper>
-      <ContentWrapper
-        style={{
-          "--padding": "12px 52px 12px 16px",
-          "--radius": "8px",
-        }}
-        value={value}
-        onChange={onChange}
-      >
+      <SelectWrapper value={value} onChange={onChange}>
         {children}
-      </ContentWrapper>
+      </SelectWrapper>
+      <PresentationalBit>{displayedValue}</PresentationalBit>
       <IconWrapper>
-        <Icon id={"chevron-down"} size={24} strokeWidth={2} />
+        <Icon id={"chevron-down"} size={24} strokeWidth={1.5} />
       </IconWrapper>
     </Wrapper>
   );
 };
 
-const ContentWrapper = styled.select`
-  padding: var(--padding);
-  border-radius: var(--radius);
-  border: none;
-  background-color: ${COLORS.transparentGray15};
-  color: ${COLORS.gray700};
+const PresentationalBit = styled.div`
+  width: 100%;
+  padding: 12px 48px 12px 16px;
   font-size: 1rem;
-  appearance: none;
+  border-radius: 8px;
+  color: ${COLORS.gray700};
+  background-color: ${COLORS.transparentGray15};
 `;
+
+const SelectWrapper = styled.select`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  height: 100%;
+`;
+
 const IconWrapper = styled.div`
   position: absolute;
+  right: 4px;
   color: ${COLORS.gray700};
-  pointer-events: none;
-  right: 12px;
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
   position: relative;
   width: max-content;
-  &:hover ${ContentWrapper} {
+  display: flex;
+  align-items: center;
+
+  &:hover ${PresentationalBit} {
     color: ${COLORS.black};
   }
+
   &:hover ${IconWrapper} {
     color: ${COLORS.black};
   }
